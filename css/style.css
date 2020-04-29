@@ -1,7 +1,7 @@
 
 
 /*--------------------------------------------------------------
-1.	Globle Rules
+1.	Global Rules
 --------------------------------------------------------------*/
 
 
@@ -25,7 +25,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.5;
-    overflow: hidden;
 
 }
 
@@ -111,6 +110,50 @@ section .title h2 {
     margin-bottom: 30px;
     font-weight: 600;
 }
+
+/* classes for editor */
+
+.custom-section {
+   min-height: 60px;
+    border: 1px dashed #37a1c8;
+    background-color: rgb(197, 230, 244);
+    text-align: center;
+    font-size: 14px;
+    width: auto;
+    display: block;
+    position: relative;
+    margin: 10px;
+}
+
+
+.side-menu {
+    background-color: #2b2e33;
+    padding: 20px;
+
+}
+.side-menu .structure {
+    cursor: move;
+
+    margin-bottom: 10px;
+    border-radius: 6px;
+    text-align: center;
+    margin-right: 16px;
+    position: relative;
+    border: 1px solid #3b3e43;
+    background-color: #222;
+    padding: 1rem;
+}
+.side-menu .structure img {
+    width: 121px;
+}
+
+
+
+.side-menu .structure.odd {
+    margin-right: 0;
+}
+
+
 
 /* class for slide order */
 

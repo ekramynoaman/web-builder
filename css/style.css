@@ -144,16 +144,26 @@ section .title h2 {
     padding: 1rem;
 }
 .side-menu .component {
+    width: 99px;
+    height: 95px;
+    background-color: #222;
+    color: #f7f7f7;
+    text-align: center;
+    border: 1px solid #3b3e43;
+    border-radius: 6px;
+    padding: 1rem;
     cursor: move;
 
-    margin-bottom: 10px;
-    border-radius: 6px;
-    text-align: center;
-    margin-right: 16px;
+    margin-bottom: 14px;
+    margin-right: 13px;
     position: relative;
-    border: 1px solid #3b3e43;
-    background-color: #222;
-    padding: 1rem;
+
+}
+.side-menu .component i {
+
+    font-size: 25px;
+    color: #dedfe1;
+    display: block;
 }
 
 .side-menu .structure img {
@@ -198,6 +208,54 @@ section .title h2 {
     
 
 }
+
+.divider {
+    font-size: 1px;
+    margin: 0px auto;
+    width: 100%;
+    border-color: rgb(0, 0, 0);
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+#social {
+    transform: translateY(50%);
+}
+
+.socialBtn {
+    display: block;
+    border: 2px solid;
+    border-radius: 50%;
+    line-height: 35px;    
+    height: 35px;
+    width: 35px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.facebook {
+
+    border-color: #4267B2;
+    
+}
+.facebook i{
+    color: #4267B2;
+    
+    
+}
+.twitter {
+    border-color: #1DA1F2;
+}
+.twitter i {
+    color: #1DA1F2;
+}
+.linkedin {
+    border-color: #0077B5;
+}
+.linkedin i{
+    color: #0077B5;
+}
+
 
 
 

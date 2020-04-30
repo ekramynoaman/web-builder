@@ -1,7 +1,16 @@
+
+// Some helper functions -------------------------------------------------
+
 // Create element function
 function create(ele) {
   return document.createElement(ele);
 }
+
+function addText(text) {
+  return document.createTextNode(text);
+}
+// Some helper functions -------------------------------------------------
+
 
 // Store the parent
 const items = document.getElementById('items');
@@ -106,15 +115,15 @@ components.forEach(component => {
 
     component.classList.add('dragging');
       if (colsType == 'text') {
-      draggedItem = document.createTextNode('This is your new text block with the first paragraph.');
+      draggedItem = addText('This is your new text block with the first paragraph.');
       
       }
 
-      if(colsType == 'image') {
+      if(colsType == 'image' | colsType == 'video') {
         draggedItem = create('div');
         draggedItem.classList.add('imgHood');
         let imgText = create('p');
-        let text = document.createTextNode('Drop your image here or browse')
+        let text = addText('Drop your image here or browse')
         imgText.appendChild(text)
         draggedItem.appendChild(imgText)
 
@@ -134,16 +143,33 @@ components.forEach(component => {
         // draggedItem.classList.add('');
         let btn = create('button');
         btn.classList.add('btn', 'btn-primary');
-        let text = document.createTextNode('Click')
+        let text = addText('Click')
         btn.appendChild(text)
         draggedItem.appendChild(btn)
 
       }
-      if(colsType == 'video') {}
-      if(colsType == 'divider') {}
-      if(colsType == 'spacer') {}
-      if(colsType == 'social') {}
-      if(colsType == 'html') {}
+      if(colsType == 'divider') {
+        draggedItem = create('div');
+        // draggedItem.classList.add('');
+        let hr = create('hr');
+        hr.classList.add('divider');
+        draggedItem.appendChild(hr)
+
+      }
+      if(colsType == 'spacer') {
+        // draggedItem = create('div');
+        // draggedItem.classList.add('');
+        let space = create('br')
+        draggedItem.appendChild(space)
+        
+      }
+      if(colsType == 'social') {
+        const social = document.getElementById('social');
+        draggedItem = social;
+        draggedItem.classList.replace('d-none', 'd-flex');
+        
+      }
+      if(colsType == 'code') {}
 
   }); 
   component.addEventListener('dragend', () => {

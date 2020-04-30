@@ -1,25 +1,16 @@
-
-
-
-
-
-
-
+// Create element function
+function create(ele) {
+  return document.createElement(ele);
+}
 
 // Store the parent
-var items = document.getElementById('items');
-// items.addEventListener('dragexit', function () {
-  
-//   console.log(items);
-//   this.appendChild(draggedItem);
+const items = document.getElementById('items');
 
 
-  
-// });
-
-// Dragged item
+// Dragged item component
 let draggedItem = null;
 
+// component hood
 let hood = null;
 
 // Generate Section
@@ -104,11 +95,11 @@ function generateSection(ele) {
 
 
 // Structure events
-var structure = document.getElementById('structure');
+const structure = document.getElementById('structure');
 structure.addEventListener('dragend', generateSection);
 
-
-var components = document.querySelectorAll('.component');
+// Component event
+const components = document.querySelectorAll('.component');
 components.forEach(component => {
   component.addEventListener('dragstart', (e) => {
     let colsType = e.target.dataset.block;
@@ -120,20 +111,38 @@ components.forEach(component => {
       }
 
       if(colsType == 'image') {
-        draggedItem = document.createElement('div');
+        draggedItem = create('div');
         draggedItem.classList.add('imgHood');
-        let imgText = document.createElement('p');
+        let imgText = create('p');
         let text = document.createTextNode('Drop your image here or browse')
         imgText.appendChild(text)
         draggedItem.appendChild(imgText)
 
       }
+
+      if(colsType == 'gif') {
+        draggedItem = create('div');
+        draggedItem.classList.add('imgHood');
+        let gif = create('img');
+        gif.classList.add('img-fluid')
+        gif.setAttribute('src', '../imgs/placeholderImg.png')
+        draggedItem.appendChild(gif)
+        
+      }
+      if(colsType == 'btn') {
+        draggedItem = create('div');
+        // draggedItem.classList.add('');
+        let btn = create('button');
+        btn.classList.add('btn', 'btn-primary');
+        let text = document.createTextNode('Click')
+        btn.appendChild(text)
+        draggedItem.appendChild(btn)
+
+      }
       if(colsType == 'video') {}
-      if(colsType == 'btn') {}
       if(colsType == 'divider') {}
       if(colsType == 'spacer') {}
       if(colsType == 'social') {}
-      if(colsType == 'gif') {}
       if(colsType == 'html') {}
 
   }); 
@@ -148,9 +157,9 @@ function addDivs (divs, cols) {
   
   for(let i = 0; i < divs; i++) {
     
-    let section = document.createElement('div');
+    let section = create('div');
     section.classList.add(`col-md-${cols}`, 'nopadding');
-    let item = document.createElement('div');
+    let item = create('div');
     item.classList.add('custom-section');
     section.appendChild(item);
     items.appendChild(section);
@@ -160,7 +169,7 @@ function addDivs (divs, cols) {
 }
 
 // For make template sortable
-var sortable = Sortable.create(items);
+let sortable = Sortable.create(items);
 
 // end  here ---------------------------------------------------------------------------
 

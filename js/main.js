@@ -1,13 +1,34 @@
+
+
+
+
+
+
+
+
 // Store the parent
 var items = document.getElementById('items');
+// items.addEventListener('dragexit', function () {
+  
+//   console.log(items);
+//   this.appendChild(draggedItem);
+
+
+  
+// });
+
+// Dragged item
+let draggedItem = null;
+
+let hood = null;
+
 // Generate Section
 function generateSection(ele) {
-  console.log(ele);
   
   let colsNum = ele.target.dataset.cols;
-  console.log(colsNum);
   
   if (colsNum < 5 ) {
+
     let cols = 12/colsNum
     addDivs(colsNum, cols);
   }
@@ -52,33 +73,94 @@ function generateSection(ele) {
     addDivs(1, 3);
     addDivs(1, 3);
   }
+  // Get items collection
+ const itemsList = document.querySelectorAll('.custom-section');
   
-// For make template sortable
-  var sortable = Sortable.create(items);
+ itemsList.forEach(item => {
+   
+   hood = item;
 
+     item.addEventListener('dragover', (e) => {
+       
+       item.style.height = '150px';
+       
+      });
+      
+      item.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        // Append component
+        item.appendChild(draggedItem)
+        item.style.height = 'auto';
+
+    
+    
+    });
+
+  });
+  
 }
 
-var structure = document.getElementById('structure');
 
-structure.addEventListener('dragend', generateSection);f
+
+
+// Structure events
+var structure = document.getElementById('structure');
+structure.addEventListener('dragend', generateSection);
+
+
+var components = document.querySelectorAll('.component');
+components.forEach(component => {
+  component.addEventListener('dragstart', (e) => {
+    let colsType = e.target.dataset.block;
+
+    component.classList.add('dragging');
+      if (colsType == 'text') {
+      draggedItem = document.createTextNode('This is your new text block with the first paragraph.');
+      
+      }
+
+      if(colsType == 'image') {
+        draggedItem = document.createElement('div');
+        draggedItem.classList.add('imgHood');
+        let imgText = document.createElement('p');
+        let text = document.createTextNode('Drop your image here or browse')
+        imgText.appendChild(text)
+        draggedItem.appendChild(imgText)
+
+      }
+      if(colsType == 'video') {}
+      if(colsType == 'btn') {}
+      if(colsType == 'divider') {}
+      if(colsType == 'spacer') {}
+      if(colsType == 'social') {}
+      if(colsType == 'gif') {}
+      if(colsType == 'html') {}
+
+  }); 
+  component.addEventListener('dragend', () => {
+    component.classList.remove('dragging');
+  }); 
+});
 
 
 // Add divs function
 function addDivs (divs, cols) {
-
+  
   for(let i = 0; i < divs; i++) {
-
+    
     let section = document.createElement('div');
     section.classList.add(`col-md-${cols}`, 'nopadding');
     let item = document.createElement('div');
     item.classList.add('custom-section');
     section.appendChild(item);
     items.appendChild(section);
-
+    
   }
-
+  
 }
 
+// For make template sortable
+var sortable = Sortable.create(items);
 
 // end  here ---------------------------------------------------------------------------
 
